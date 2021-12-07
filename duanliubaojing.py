@@ -10,7 +10,6 @@ with open('/home/py/checkstream/nhls1.txt', 'a') as fe:
     fe.write(stream)
     fe.close()
     
-    
 def duanliujiance(m3u8_url):
     response = requests.get(m3u8_url)
     HTTP_CODE = response.status_code
@@ -52,7 +51,6 @@ def duanliujiance(m3u8_url):
                     newurl =urlstr.replace("0.0.0.52", 'host', )
                 fe.write(newurl)
                 fe.close()
-
                 os.system("\cp /home/py/checkstream/neiwanghls1.txt /home/py/checkstream/neiwanghls.txt")
 
 def duanliuhuifu(url):
@@ -114,6 +112,3 @@ with open('/home/py/checkstream/neiwanghls.txt','r') as fn:
             t.start()
         lock.release()
 fn.close()
-
-
-

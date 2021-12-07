@@ -6,14 +6,12 @@ import json
 import requests,time
 import threading
 
-
 #-------------------钉钉告警模块-------------------
 TOKEN = ""
 
 # SECRET = ""
 headers = {'Content-Type': 'application/json;charset=utf-8'}
 atmobile_list = [""]
-
 
 def ddmsgsend(text):
     '''
@@ -42,12 +40,6 @@ def ddmsgsend(text):
     # 请求url
     return requests.post(TOKEN, json.dumps(json_text), headers=headers).content.decode("utf8")
 
-
-
-
-
-
-
 def ddmsgsendat(text):
     '''
     带@的钉钉告警模块，通过关键字验证发送告警信息
@@ -67,8 +59,6 @@ def ddmsgsendat(text):
     }
     # 请求url
     return requests.post(TOKEN, json.dumps(json_text), headers=headers).content.decode("utf8")
-
-
 
 #-------------------opencv2监测视频参数模块-------------------
 
@@ -311,8 +301,6 @@ def hlselapsed(hlsurl):
                 msg = "以下直播响应时间恢复正常" + '\n' + hlsurl
                 ddmsgsend(msg)
                 break
-    
-
 
 def m3u8duanliujiance(m3u8_url):
     response = requests.get(m3u8_url)

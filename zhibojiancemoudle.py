@@ -156,11 +156,11 @@ def m3u8curl(m3u8_url):
     else:
         print("连接时间：%s 毫秒" % t)
 
-    with open('/home/py/checkstream/youku.m3u8', 'wb') as tempTs:
+    with open('/home/py/checkstream/test.m3u8', 'wb') as tempTs:
         tempTs.write(response.content)
 
     # 读取m3u8每行文本
-    with open('/home/py/checkstream/youku.m3u8', 'r') as m3u8:
+    with open('/home/py/checkstream/test.m3u8', 'r') as m3u8:
     #获取ts片的响应时间
         for line in m3u8:
             if ".ts" in line:

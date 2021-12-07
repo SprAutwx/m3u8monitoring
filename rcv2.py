@@ -1,7 +1,5 @@
 import cv2
 
-
-
 def rtmpstate(video_path):
 # video_path = ""
 

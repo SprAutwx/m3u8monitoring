@@ -3,38 +3,6 @@ import requests
 import hashlib,time
 import pycurl
 
-# def checkCdnFile(url):
-#     """
-#     检测一个segment
-#     """
-#     requestHeaders = {'User-Agent': 'Android'}
-#     response = requests.get(url)
-#
-#     headers = response.headers
-#
-#     md5 = headers.get('ETag')
-#     md5 = md5[1: (len(md5) - 1)]
-#     md5 = md5.lower()
-#
-#     print("headerMd5:" + md5)
-#
-#     with open('temp.ts', 'wb') as tempTs:
-#         tempTs.write(response.content)
-#
-#     with open('temp.ts', 'rb') as tempTs:
-#         data = tempTs.read()
-#         realMd5 = hashlib.md5(data).hexdigest()
-#         print("realMd5:" + realMd5)
-#         if (md5 == realMd5):
-#             print("correct_segment")
-#         else:
-#             print("error_segment：" + url)
-#             print("error_header_md5" + md5)
-#             print("error_real_md5" + realMd5)
-#             sys.exit(1)
-#
-
-
 # 根据url下载m3u8文件.当然也可以注释掉这个下载
 m3u8_url = ''
 response = requests.get(m3u8_url)
@@ -71,13 +39,13 @@ if t > 100:
     connect_time1 = c1.getinfo(pycurl.CONNECT_TIME)
     t1 = connect_time1 * 1000
     if t1 > 100:
-        print("dddddddddddddddddd%s"%t1);
+        print(t1);
     else:
         print("连接时间：%s 毫秒" % t1)
 else:
     print("连接时间：%s 毫秒"%t)
 
-with open('youku.m3u8', 'wb') as tempTs:
+with open('test.m3u8', 'wb') as tempTs:
     tempTs.write(response.content)
 
 # 读取m3u8每行文本

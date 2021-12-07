@@ -6,7 +6,7 @@ with open('/home/py/checkstream/hls.txt','r+') as f:
     for line in f:
         cdnlist = ['test.com','test2.com']
         cdnname = random.choice(cdnlist)
-        line = line.replace('cdnname.cztv.com',cdnname)
+        line = line.replace('cdn.test.com',cdnname)
         m3u8curl(line)
     f.close()
 

@@ -3,8 +3,6 @@ import requests
 import hashlib,time
 import pycurl
 
-
-
 # def checkCdnFile(url):
 #     """
 #     检测一个segment
@@ -41,7 +39,6 @@ import pycurl
 m3u8_url = ''
 response = requests.get(m3u8_url)
 
-
 c = pycurl.Curl()
 c.setopt(pycurl.VERBOSE,0)
 c.setopt(pycurl.CONNECTTIMEOUT, 5)    #连接的等待时间，设置为0则不等待
@@ -55,8 +52,6 @@ c.setopt(pycurl.URL,m3u8_url )
 indexfile = open("content.txt","wb")
 c.setopt(pycurl.WRITEHEADER,indexfile)  #将返回的HTTP HEADER定向到indexfile文件
 c.setopt(pycurl.WRITEDATA,indexfile)    #将返回的HTML内容定向到indexfile文件
-
-
 c.perform()
 connect_time =  c.getinfo(pycurl.CONNECT_TIME)
 t = connect_time*1000
@@ -66,7 +61,6 @@ if HTTP_CODE != 200:
     print("!!!httpcode%s"%HTTP_CODE)
 else:
     print("状态正常：%s"%HTTP_CODE)
-
 
 if t > 100:
     time.sleep(5)
@@ -80,24 +74,14 @@ if t > 100:
         print("dddddddddddddddddd%s"%t1);
     else:
         print("连接时间：%s 毫秒" % t1)
-
 else:
     print("连接时间：%s 毫秒"%t)
-
-
 
 with open('youku.m3u8', 'wb') as tempTs:
     tempTs.write(response.content)
 
 # 读取m3u8每行文本
 with open('youku.m3u8', 'r') as m3u8:
-    # segmentCount = 0
-    # for line in m3u8:
-    #     line = line.strip('\n')
-    #     if line.startswith("http"):
-    #         segmentCount += 1
-    #         print('no:%d'%(segmentCount))
-    #         checkCdnFile(line)
 #获取ts片的响应时间
     for line in m3u8:
         if ".ts" in line:
@@ -111,8 +95,5 @@ with open('youku.m3u8', 'r') as m3u8:
 
             if rsp_time >200:
                 print(m3u8_url)
-            # with open('ts.txt','a') as tst:
-            #     tst.write(tsurl)
-            #     tst.close()
 m3u8.close()
 

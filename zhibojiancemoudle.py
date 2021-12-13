@@ -1,4 +1,4 @@
-import requests
+import urllib.request
 import time
 import cv2
 import re
@@ -168,10 +168,15 @@ def m3u8curl(m3u8_url):
                 u1 = m3u8_url[0:m3u8_url.rfind('/', 1) + 1]
                 tsurl = u1 + ts1
                 # print(tsurl)
-                rsp = requests.get(tsurl)
-                rsp_time = rsp.elapsed.total_seconds()*1000
+                #rsp = requests.get(tsurl)
+                #rsp_time = rsp.elapsed.total_seconds()*1000
+                rsp = urllib.request.urlopen(tsurl)
+                start = time.time()
+                page = rsp.read()
+                end = time.time()
+                rsp_time = (end - start) * 1000
                 print("%s 响应时间：%s毫秒"%(tsurl,rsp_time))
-                if rsp_time >3000:
+                if rsp_time >1000:
                     with open("/home/py/checkstream/waring.txt", 'a',encoding='utf-8')as war:
                         wtime = str(rsp_time)
                         w = "TS响应慢" + tsurl + "响应时间" + wtime + '\n'
